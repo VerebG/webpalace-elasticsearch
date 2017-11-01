@@ -19,7 +19,6 @@ CMD /usr/share/elasticsearch/bin/elasticsearch \
     --quiet \
     -Edefault.path.logs=/var/log/elasticsearch \
     -Edefault.path.data=/var/lib/elasticsearch \
-    -Edefault.path.conf=/etc/elasticsearch \
-    -Des.cgroups.hierarchy.override=/
-
+    -Edefault.path.conf=/etc/elasticsearch
+    
 EXPOSE 9200 9300
