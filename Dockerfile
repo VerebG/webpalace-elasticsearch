@@ -19,6 +19,8 @@ COPY etc/elasticsearch $ES_CONF_DIR
 RUN mkdir -p {$ES_CONF_DIR,$ES_DATA_DIR,$ES_LOG_DIR} && \
     chown elasticsearch:elasticsearch -R {$ES_CONF_DIR,$ES_DATA_DIR,$ES_LOG_DIR}
 
+RUN /usr/share/elasticsearch/elasticsearch-plugin install x-pack
+
 USER elasticsearch
 
 CMD /usr/share/elasticsearch/bin/elasticsearch \
