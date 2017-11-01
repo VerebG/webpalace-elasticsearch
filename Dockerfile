@@ -13,6 +13,9 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 ENV JAVACMD="/usr/bin/java"
 
 COPY etc/elasticsearch /etc/elasticsearch
+RUN chown elasticsearch:elasticsearch -R /etc/elasticsearch
+
+USER elasticsearch
 
 CMD /usr/share/elasticsearch/bin/elasticsearch \
     -p /var/run/elasticsearch/elasticsearch.pid \
