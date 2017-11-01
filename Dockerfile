@@ -11,17 +11,24 @@ RUN apt-get update \
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 ENV JAVACMD="/usr/bin/java"
+ENV ES_CONF_DIR='/etc/elasticsearch'
+ENV ES_DATA_DIR='/var/lib/elasticsearch'
+ENV ES_LOG_DIR='/var/log/elasticsearch'
 
-COPY etc/elasticsearch /etc/elasticsearch
-RUN chown elasticsearch:elasticsearch -R /etc/elasticsearch
+COPY etc/elasticsearch $ES_CONF_DIR
+RUN chown elasticsearch:elasticsearch -R { \
+        $ES_CONF_DIR, \
+        $ES_DATA_DIR, \
+        $ES_LOG_DIR
+    }
 
 USER elasticsearch
 
 CMD /usr/share/elasticsearch/bin/elasticsearch \
     -p /var/run/elasticsearch/elasticsearch.pid \
     --quiet \
-    -Edefault.path.logs=/var/log/elasticsearch \
-    -Edefault.path.data=/var/lib/elasticsearch \
-    -Edefault.path.conf=/etc/elasticsearch
+    -Edefault.path.logs=$ES_LOG_DIR \
+    -Edefault.path.data=$ES_DATA_DIR \
+    -Edefault.path.conf=$ES_CONF_DIR
 
 EXPOSE 9200 9300
