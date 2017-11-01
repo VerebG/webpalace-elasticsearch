@@ -19,7 +19,7 @@ COPY etc/elasticsearch $ES_CONF_DIR
 RUN chown elasticsearch:elasticsearch -R { \
         $ES_CONF_DIR, \
         $ES_DATA_DIR, \
-        $ES_LOG_DIR
+        $ES_LOG_DIR \
     }
 
 USER elasticsearch
