@@ -20,5 +20,5 @@ CMD /usr/share/elasticsearch/bin/elasticsearch \
     -Edefault.path.logs=/var/log/elasticsearch \
     -Edefault.path.data=/var/lib/elasticsearch \
     -Edefault.path.conf=/etc/elasticsearch
-    
+
 EXPOSE 9200 9300
